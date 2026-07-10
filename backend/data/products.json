@@ -1,0 +1,189 @@
+[
+  {
+    "id": "p1",
+    "title": "Apple iPhone 15 (Black, 128 GB)",
+    "shortTitle": "Apple iPhone 15",
+    "description": "Experience the iPhone 15 with Dynamic Island, a 48MP Main camera, and USB-C, all in a durable color-infused glass and aluminum design.",
+    "price": {
+      "mrp": 79900,
+      "cost": 65999,
+      "discount": 17
+    },
+    "category": "Mobiles",
+    "image": "https://images.unsplash.com/photo-1695048133142-1a20484d2569?w=500&auto=format&fit=crop&q=60",
+    "rating": {
+      "rate": 4.6,
+      "count": 12850
+    },
+    "specifications": {
+      "Model": "iPhone 15",
+      "Display": "6.1-inch Super Retina XDR",
+      "Processor": "A16 Bionic chip",
+      "Camera": "48MP Dual Camera System",
+      "Storage": "128 GB"
+    }
+  },
+  {
+    "id": "p2",
+    "title": "Samsung Galaxy S24 Ultra 5G (Titanium Gray, 256 GB)",
+    "shortTitle": "Samsung Galaxy S24 Ultra",
+    "description": "Welcome to the era of mobile AI. With Galaxy S24 Ultra in your hands, you can unleash whole new levels of creativity, productivity and possibility.",
+    "price": {
+      "mrp": 134999,
+      "cost": 124999,
+      "discount": 7
+    },
+    "category": "Mobiles",
+    "image": "https://images.unsplash.com/photo-1610945265064-0e34e5519bbf?w=500&auto=format&fit=crop&q=60",
+    "rating": {
+      "rate": 4.7,
+      "count": 3420
+    },
+    "specifications": {
+      "Model": "Galaxy S24 Ultra",
+      "Display": "6.8-inch Dynamic AMOLED 2X",
+      "Processor": "Snapdragon 8 Gen 3",
+      "Camera": "200MP Quad Camera System",
+      "Storage": "256 GB"
+    }
+  },
+  {
+    "id": "p3",
+    "title": "ASUS Vivobook 15 Intel Core i3 12th Gen (8 GB/512 GB SSD/Windows 11)",
+    "shortTitle": "ASUS Vivobook 15",
+    "description": "Make your style statement with the ASUS Vivobook 15, the feature-packed laptop that makes it easy to get things done, anywhere.",
+    "price": {
+      "mrp": 49990,
+      "cost": 32990,
+      "discount": 34
+    },
+    "category": "Laptops",
+    "image": "https://images.unsplash.com/photo-1588872657578-7efd1f1555ed?w=500&auto=format&fit=crop&q=60",
+    "rating": {
+      "rate": 4.2,
+      "count": 8940
+    },
+    "specifications": {
+      "Model": "Vivobook 15",
+      "Processor": "Intel Core i3 12th Gen",
+      "RAM": "8 GB DDR4",
+      "Storage": "512 GB SSD",
+      "OS": "Windows 11 Home"
+    }
+  },
+  {
+    "id": "p4",
+    "title": "Sony WH-1000XM4 Noise Cancelling Wireless Headphones (Black)",
+    "shortTitle": "Sony WH-1000XM4 Headphones",
+    "description": "Sony's intelligent industry-leading noise canceling headphones with premium sound elevate your listening experience with the ability to personalize and control everything.",
+    "price": {
+      "mrp": 29990,
+      "cost": 19990,
+      "discount": 33
+    },
+    "category": "Audio",
+    "image": "https://images.unsplash.com/photo-1505740420928-5e560c06d30e?w=500&auto=format&fit=crop&q=60",
+    "rating": {
+      "rate": 4.5,
+      "count": 5210
+    },
+    "specifications": {
+      "Type": "Over-Ear Wireless",
+      "Battery Life": "Up to 30 Hours",
+      "Noise Cancellation": "Active Noise Cancelling",
+      "Bluetooth": "v5.0"
+    }
+  },
+  {
+    "id": "p5",
+    "title": "boAt Airdopes 131 Bluetooth Headset with Active Voice Assistant",
+    "shortTitle": "boAt Airdopes 131",
+    "description": "Bring home the boAt Airdopes 131 earbuds and listen to your favorite tunes without any tangles or wires holding you back.",
+    "price": {
+      "mrp": 2990,
+      "cost": 999,
+      "discount": 66
+    },
+    "category": "Audio",
+    "image": "https://images.unsplash.com/photo-1590658268037-6bf12165a8df?w=500&auto=format&fit=crop&q=60",
+    "rating": {
+      "rate": 4.0,
+      "count": 145920
+    },
+    "specifications": {
+      "Type": "In-Ear Wireless",
+      "Battery Life": "Up to 12 Hours with Case",
+      "Charging Port": "Type-C",
+      "Bluetooth": "v5.0"
+    }
+  },
+  {
+    "id": "p6",
+    "title": "OnePlus 108 cm (43 inches) Y Series 4K Ultra HD Smart Android LED TV",
+    "shortTitle": "OnePlus 43\" Smart TV",
+    "description": "Immerse yourself in stunning 4K visuals, crystal clear Dolby Audio sound, and a smart, integrated Android experience with the OnePlus TV.",
+    "price": {
+      "mrp": 39999,
+      "cost": 27999,
+      "discount": 30
+    },
+    "category": "Home",
+    "image": "https://images.unsplash.com/photo-1593305841991-05c297ba4575?w=500&auto=format&fit=crop&q=60",
+    "rating": {
+      "rate": 4.3,
+      "count": 2180
+    },
+    "specifications": {
+      "Display Size": "43 inches",
+      "Resolution": "4K Ultra HD (3840 x 2160)",
+      "Smart OS": "Android TV",
+      "Sound Output": "24W Dolby Audio Speakers"
+    }
+  },
+  {
+    "id": "p7",
+    "title": "Puma Men's Dynamic Sports Running Shoes (Black & White)",
+    "shortTitle": "Puma Running Shoes",
+    "description": "Engineered for maximum endurance and everyday styling, the Puma Sports shoes feature a breathable mesh upper and ultra-cushioned midsole.",
+    "price": {
+      "mrp": 4999,
+      "cost": 2199,
+      "discount": 56
+    },
+    "category": "Fashion",
+    "image": "https://images.unsplash.com/photo-1608231387042-66d1773070a5?w=500&auto=format&fit=crop&q=60",
+    "rating": {
+      "rate": 4.1,
+      "count": 4820
+    },
+    "specifications": {
+      "Type": "Running Shoes",
+      "Material": "Mesh & Rubber",
+      "Closure": "Lace-Up",
+      "Weight": "Lightweight"
+    }
+  },
+  {
+    "id": "p8",
+    "title": "Casio G-Shock Analog-Digital Dial Men's Watch - GA-2100-1A1DR",
+    "shortTitle": "Casio G-Shock Watch",
+    "description": "The Casio G-Shock features a sleek octagonal carbon core guard structure, offering extreme shock resistance with high-quality resin straps and modern analog-digital face.",
+    "price": {
+      "mrp": 9995,
+      "cost": 7995,
+      "discount": 20
+    },
+    "category": "Fashion",
+    "image": "https://images.unsplash.com/photo-1522312346375-d1a52e2b99b3?w=500&auto=format&fit=crop&q=60",
+    "rating": {
+      "rate": 4.5,
+      "count": 1580
+    },
+    "specifications": {
+      "Dial Color": "Black",
+      "Case Material": "Carbon/Resin",
+      "Water Resistance": "200 Meters",
+      "Battery Life": "Approx. 3 Years"
+    }
+  }
+]

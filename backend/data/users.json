@@ -1,0 +1,10 @@
+[
+  {
+    "id": "u_1783231350685",
+    "name": "Test Buyer",
+    "email": "buyer@test.com",
+    "password": "$2a$10$dpdrPm9esBHim0et7Iz80ObO2o/kZDxqOZBOKNZVcYWhZRAXuMId.",
+    "role": "user",
+    "createdAt": "2026-07-05T06:02:30.685Z"
+  }
+]
