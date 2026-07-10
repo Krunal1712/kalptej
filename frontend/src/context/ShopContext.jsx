@@ -3,7 +3,7 @@ import React, { createContext, useState, useEffect } from 'react';
 export const ShopContext = createContext(null);
 
 export const ShopProvider = ({ children }) => {
-  const API_URL = 'http://localhost:5000/api';
+  const API_URL = import.meta.env.VITE_API_URL || 'http://localhost:5000/api';
 
   const [products, setProducts] = useState([]);
   const [loading, setLoading] = useState(false);
