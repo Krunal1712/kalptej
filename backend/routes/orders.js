@@ -4,7 +4,7 @@ const db = require('../data/db');
 const { authenticateToken, isAdmin } = require('../middleware/auth');
 
 // POST: Place New Order
-router.post('/', authenticateToken, (req, res) => {
+router.post('/', authenticateToken, async (req, res) => {
   try {
     const { items, shippingAddress, paymentMethod, paymentDetails } = req.body;
 
@@ -25,7 +25,6 @@ router.post('/', authenticateToken, (req, res) => {
     const deliveryCharges = totalCost > 500 ? 0 : 40;
     const finalAmount = totalCost + deliveryCharges;
 
-    const orders = db.getOrders();
     const newOrder = {
       id: 'ord_' + Date.now(),
       userId: req.user.id,
@@ -45,11 +44,10 @@ router.post('/', authenticateToken, (req, res) => {
       statusTimeline: [
         { status: 'Ordered', timestamp: new Date().toISOString() }
       ],
-      createdAt: new Date().toISOString()
+      createdAt: new Date().toISOString().slice(0, 19).replace('T', ' ')
     };
 
-    orders.push(newOrder);
-    db.saveOrders(orders);
+    await db.createOrder(newOrder);
 
     res.status(201).json(newOrder);
   } catch (error) {
@@ -59,12 +57,9 @@ router.post('/', authenticateToken, (req, res) => {
 });
 
 // GET: Current User's Orders
-router.get('/', authenticateToken, (req, res) => {
+router.get('/', authenticateToken, async (req, res) => {
   try {
-    const orders = db.getOrders();
-    const userOrders = orders.filter(o => o.userId === req.user.id);
-    // Sort by latest order first
-    userOrders.sort((a, b) => new Date(b.createdAt) - new Date(a.createdAt));
+    const userOrders = await db.getUserOrders(req.user.id);
     res.json(userOrders);
   } catch (error) {
     console.error('Error fetching user orders:', error);
@@ -73,11 +68,9 @@ router.get('/', authenticateToken, (req, res) => {
 });
 
 // GET: All Orders (Admin Only)
-router.get('/all', authenticateToken, isAdmin, (req, res) => {
+router.get('/all', authenticateToken, isAdmin, async (req, res) => {
   try {
-    const orders = db.getOrders();
-    // Sort by latest order first
-    orders.sort((a, b) => new Date(b.createdAt) - new Date(a.createdAt));
+    const orders = await db.getOrders();
     res.json(orders);
   } catch (error) {
     console.error('Error fetching all orders:', error);
@@ -86,7 +79,7 @@ router.get('/all', authenticateToken, isAdmin, (req, res) => {
 });
 
 // PUT: Update Order Status (Admin Only)
-router.put('/:id/status', authenticateToken, isAdmin, (req, res) => {
+router.put('/:id/status', authenticateToken, isAdmin, async (req, res) => {
   try {
     const { status } = req.body;
     const validStatuses = ['Ordered', 'Shipped', 'Out for Delivery', 'Delivered'];
@@ -95,24 +88,21 @@ router.put('/:id/status', authenticateToken, isAdmin, (req, res) => {
       return res.status(400).json({ message: 'Invalid status update' });
     }
 
-    const orders = db.getOrders();
-    const index = orders.findIndex(o => o.id === req.params.id);
+    const orders = await db.getOrders();
+    const order = orders.find(o => o.id === req.params.id);
 
-    if (index === -1) {
+    if (!order) {
       return res.status(404).json({ message: 'Order not found' });
     }
 
-    const order = orders[index];
-    order.orderStatus = status;
     order.statusTimeline.push({
       status,
       timestamp: new Date().toISOString()
     });
 
-    orders[index] = order;
-    db.saveOrders(orders);
+    const updatedOrder = await db.updateOrderStatus(req.params.id, status, order.statusTimeline);
 
-    res.json(order);
+    res.json(updatedOrder);
   } catch (error) {
     console.error('Error updating order status:', error);
     res.status(500).json({ message: 'Server error while updating status' });

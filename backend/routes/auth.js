@@ -18,8 +18,7 @@ router.post('/register', async (req, res) => {
       return res.status(400).json({ message: 'This email is reserved for Admin' });
     }
 
-    const users = db.getUsers();
-    const existingUser = users.find(u => u.email.toLowerCase() === email.toLowerCase());
+    const existingUser = await db.findUserByEmail(email);
     if (existingUser) {
       return res.status(400).json({ message: 'User already exists with this email' });
     }
@@ -33,11 +32,10 @@ router.post('/register', async (req, res) => {
       email: email.toLowerCase(),
       password: hashedPassword,
       role: 'user',
-      createdAt: new Date().toISOString()
+      createdAt: new Date().toISOString().slice(0, 19).replace('T', ' ') // Format for MySQL DATETIME
     };
 
-    users.push(newUser);
-    db.saveUsers(users);
+    await db.createUser(newUser);
 
     // Create JWT Token
     const token = jwt.sign(
@@ -96,8 +94,7 @@ router.post('/login', async (req, res) => {
     }
 
     // Regular user login
-    const users = db.getUsers();
-    const user = users.find(u => u.email.toLowerCase() === cleanEmail);
+    const user = await db.findUserByEmail(cleanEmail);
 
     if (!user) {
       return res.status(400).json({ message: 'Invalid credentials' });

@@ -4,25 +4,10 @@ const db = require('../data/db');
 const { authenticateToken, isAdmin } = require('../middleware/auth');
 
 // GET: All Products (Supports Search and Category filters)
-router.get('/', (req, res) => {
+router.get('/', async (req, res) => {
   try {
-    let products = db.getProducts();
     const { search, category } = req.query;
-
-    if (category) {
-      products = products.filter(p => p.category.toLowerCase() === category.toLowerCase());
-    }
-
-    if (search) {
-      const query = search.toLowerCase();
-      products = products.filter(p => 
-        p.title.toLowerCase().includes(query) || 
-        p.shortTitle.toLowerCase().includes(query) ||
-        p.description.toLowerCase().includes(query) ||
-        p.category.toLowerCase().includes(query)
-      );
-    }
-
+    const products = await db.getProducts(search, category);
     res.json(products);
   } catch (error) {
     console.error('Error fetching products:', error);
@@ -31,10 +16,9 @@ router.get('/', (req, res) => {
 });
 
 // GET: Single Product by ID
-router.get('/:id', (req, res) => {
+router.get('/:id', async (req, res) => {
   try {
-    const products = db.getProducts();
-    const product = products.find(p => p.id === req.params.id);
+    const product = await db.getProductById(req.params.id);
 
     if (!product) {
       return res.status(404).json({ message: 'Product not found' });
@@ -48,7 +32,7 @@ router.get('/:id', (req, res) => {
 });
 
 // POST: Add Product (Admin Only)
-router.post('/', authenticateToken, isAdmin, (req, res) => {
+router.post('/', authenticateToken, isAdmin, async (req, res) => {
   try {
     const { title, shortTitle, description, price, category, image, specifications } = req.body;
 
@@ -56,7 +40,6 @@ router.post('/', authenticateToken, isAdmin, (req, res) => {
       return res.status(400).json({ message: 'Title, Short Title, Price, Category, and Image are required' });
     }
 
-    const products = db.getProducts();
     const newProduct = {
       id: 'p_' + Date.now(),
       title,
@@ -73,11 +56,11 @@ router.post('/', authenticateToken, isAdmin, (req, res) => {
         rate: 5.0,
         count: 1
       },
-      specifications: specifications || {}
+      specifications: specifications || {},
+      createdAt: new Date().toISOString().slice(0, 19).replace('T', ' ')
     };
 
-    products.push(newProduct);
-    db.saveProducts(products);
+    await db.createProduct(newProduct);
 
     res.status(201).json(newProduct);
   } catch (error) {
@@ -87,17 +70,14 @@ router.post('/', authenticateToken, isAdmin, (req, res) => {
 });
 
 // PUT: Update Product (Admin Only)
-router.put('/:id', authenticateToken, isAdmin, (req, res) => {
+router.put('/:id', authenticateToken, isAdmin, async (req, res) => {
   try {
     const { title, shortTitle, description, price, category, image, specifications } = req.body;
-    const products = db.getProducts();
-    const index = products.findIndex(p => p.id === req.params.id);
+    const existingProduct = await db.getProductById(req.params.id);
 
-    if (index === -1) {
+    if (!existingProduct) {
       return res.status(404).json({ message: 'Product not found' });
     }
-
-    const existingProduct = products[index];
 
     const updatedProduct = {
       ...existingProduct,
@@ -114,10 +94,8 @@ router.put('/:id', authenticateToken, isAdmin, (req, res) => {
       specifications: specifications || existingProduct.specifications
     };
 
-    products[index] = updatedProduct;
-    db.saveProducts(products);
-
-    res.json(updatedProduct);
+    const savedProduct = await db.updateProduct(req.params.id, updatedProduct);
+    res.json(savedProduct);
   } catch (error) {
     console.error('Error updating product:', error);
     res.status(500).json({ message: 'Server error while updating product' });
@@ -125,16 +103,14 @@ router.put('/:id', authenticateToken, isAdmin, (req, res) => {
 });
 
 // DELETE: Remove Product (Admin Only)
-router.delete('/:id', authenticateToken, isAdmin, (req, res) => {
+router.delete('/:id', authenticateToken, isAdmin, async (req, res) => {
   try {
-    const products = db.getProducts();
-    const filteredProducts = products.filter(p => p.id !== req.params.id);
+    const success = await db.deleteProduct(req.params.id);
 
-    if (products.length === filteredProducts.length) {
+    if (!success) {
       return res.status(404).json({ message: 'Product not found' });
     }
 
-    db.saveProducts(filteredProducts);
     res.json({ message: 'Product successfully deleted' });
   } catch (error) {
     console.error('Error deleting product:', error);
