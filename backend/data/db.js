@@ -13,7 +13,7 @@ const pool = mysql.createPool(dbConfig);
 
 // Helper for executing queries
 async function query(sql, params) {
-  const [results] = await pool.execute(sql, params);
+  const [results] = await pool.query(sql, params);
   return results;
 }
 
