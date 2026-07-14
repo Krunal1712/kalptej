@@ -123,11 +123,11 @@ export const ShopProvider = ({ children }) => {
       if (existingItem) {
         return prevCart.map(item =>
           item.product.id === product.id
-            ? { ...item, qty: item.qty + qty }
+            ? { ...item, qty: Math.min(item.qty + qty, 10) }
             : item
         );
       }
-      return [...prevCart, { product, qty }];
+      return [...prevCart, { product, qty: Math.min(qty, 10) }];
     });
   };
 
@@ -140,9 +140,10 @@ export const ShopProvider = ({ children }) => {
       removeFromCart(productId);
       return;
     }
+    const finalQty = Math.min(qty, 10);
     setCart(prevCart =>
       prevCart.map(item =>
-        item.product.id === productId ? { ...item, qty } : item
+        item.product.id === productId ? { ...item, qty: finalQty } : item
       )
     );
   };
