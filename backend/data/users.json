@@ -6,5 +6,13 @@
     "password": "$2a$10$dpdrPm9esBHim0et7Iz80ObO2o/kZDxqOZBOKNZVcYWhZRAXuMId.",
     "role": "user",
     "createdAt": "2026-07-05T06:02:30.685Z"
+  },
+  {
+    "id": "u_1783672662214",
+    "name": "krunal",
+    "email": "tithil20@gmail.com",
+    "password": "$2a$10$q/2xzu/sXxV5sHr9bCmuGeeU/YbIQ9hU1Hq8jkRSzOoCKd9M.LFsa",
+    "role": "user",
+    "createdAt": "2026-07-10T08:37:42.214Z"
   }
 ]

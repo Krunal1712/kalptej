@@ -1,1 +1,49 @@
-[]
+[
+  {
+    "id": "ord_1783672736836",
+    "userId": "u_1783672662214",
+    "userName": "krunal",
+    "userEmail": "tithil20@gmail.com",
+    "items": [
+      {
+        "id": "p5",
+        "title": "boAt Airdopes 131 Bluetooth Headset with Active Voice Assistant",
+        "shortTitle": "boAt Airdopes 131",
+        "image": "https://images.unsplash.com/photo-1590658268037-6bf12165a8df?w=500&auto=format&fit=crop&q=60",
+        "price": {
+          "mrp": 2990,
+          "cost": 999,
+          "discount": 66
+        },
+        "qty": 1
+      }
+    ],
+    "shippingAddress": {
+      "name": "pk",
+      "phone": "1234567891",
+      "street": "gada",
+      "city": "Gada",
+      "state": "Sojitra,Anand,GJ",
+      "pincode": "387240"
+    },
+    "paymentMethod": "COD",
+    "paymentDetails": {
+      "status": "Success",
+      "transactionId": "TXN_1783672736836"
+    },
+    "pricing": {
+      "totalMrp": 2990,
+      "discount": 1991,
+      "deliveryCharges": 0,
+      "finalAmount": 999
+    },
+    "orderStatus": "Ordered",
+    "statusTimeline": [
+      {
+        "status": "Ordered",
+        "timestamp": "2026-07-10T08:38:56.836Z"
+      }
+    ],
+    "createdAt": "2026-07-10T08:38:56.836Z"
+  }
+]
