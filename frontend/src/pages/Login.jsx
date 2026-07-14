@@ -193,14 +193,7 @@ const Login = () => {
               {isLoginTab ? 'Login' : 'Continue'}
             </button>
 
-            {/* Test accounts notice */}
-            {isLoginTab && (
-              <div className="test-credentials-box">
-                <h4>🧪 Demo Admin Login:</h4>
-                <p><strong>Email:</strong> admin@kalptaj.com</p>
-                <p><strong>Password:</strong> adminpassword</p>
-              </div>
-            )}
+
           </form>
         </div>
 
